@@ -8,54 +8,56 @@
         body {
             font-family: Arial, sans-serif;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
             height: 100vh;
             margin: 0;
             background-color: #f0f0f0;
         }
 
-        .welcome-container {
-            background-color: white;
-            padding: 50px;
-            border-radius: 12px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-            max-width: 500px;
-            text-align: center;
-        }
-
-        h1 {
-            font-size: 36px;
-            margin-bottom: 20px;
-        }
-
-        p {
-            font-size: 18px;
-            color: #333;
-        }
-
-        .btn {
-            margin-top: 30px;
-            padding: 10px 20px;
-            font-size: 18px;
-            color: white;
-            background-color: #007bff;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            text-decoration: none;
-        }
-
-        .btn:hover {
-            background-color: #0056b3;
+        .chart-container {
+            width: 80%;
+            max-width: 800px;
+            margin-top: 50px;
         }
     </style>
 </head>
 <body>
-    <div class="welcome-container">
-        <h1>Welcome!</h1>
-        <p>You have successfully logged in.</p>
-        <a href="#" class="btn">Go to Dashboard</a> <!-- Replace the href with the correct link -->
+    <h1>Welcome! Here is the Vehicle Registration Overview</h1>
+    <div class="chart-container">
+        <canvas id="registrationChart"></canvas>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        fetch('/api/registrations')
+            .then(response => response.json())
+            .then(data => {
+                const labels = data.map(row => row.VehicleType);
+                const counts = data.map(row => row.TotalRegistrations);
+
+                const ctx = document.getElementById('registrationChart').getContext('2d');
+                const chart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Total Registrations',
+                            data: counts,
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            });
+    </script>
 </body>
 </html>
