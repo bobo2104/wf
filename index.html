@@ -11,7 +11,6 @@
 <body>
     <div class="login-container">
         <h2>Enter Password</h2>
-        <!-- Wrapping input and button in a form -->
         <form onsubmit="checkPassword(event)">
             <input type="password" id="password" placeholder="Enter your password" required>
             <button type="submit">Submit</button>
@@ -26,7 +25,7 @@
             const correctPassword = 'w2wf';
 
             if (enteredPassword === correctPassword) {
-                window.location.href = "workflow.html"; // Redirect to the workflow overview page
+                window.location.href = "welcome.html"; // Redirect to the welcome page
             } else {
                 document.getElementById('error-message').style.display = 'block';
             }
