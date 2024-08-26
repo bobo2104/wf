@@ -11,7 +11,7 @@ module.exports = async (req, res) => {
                     'Total Market' AS Segment, 
                     SUM(Fjöldi_skráninga) AS TotalSales
                 FROM 
-                    LCVSales  -- Replace with your actual table name
+                    YourTableName  -- Replace with your actual table name
                 GROUP BY 
                     ár
                 ORDER BY 
