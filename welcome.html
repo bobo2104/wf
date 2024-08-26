@@ -3,17 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Car Market Predictions</title>
+    <title>Car Market Predictions for Next 4 Years</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Include Chart.js from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <h1>Car Market Predictions for Next 4 Years</h1>
-    <div class="chart-container">
-        <canvas id="carMarketChart"></canvas>
-    </div>
-
-    <!-- Include Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <header>
+        <h1>Car Market Predictions for the Next 4 Years</h1>
+    </header>
+    
+    <main>
+        <!-- Rental Car Market Section -->
+        <section>
+            <h2>Rental Car Market</h2>
+            <canvas id="rentalChart"></canvas>
+        </section>
+        
+        <!-- Retail Car Market Section -->
+        <section>
+            <h2>Retail Car Market</h2>
+            <canvas id="retailChart"></canvas>
+        </section>
+        
+        <!-- Mainstream Car Market Section -->
+        <section>
+            <h2>Mainstream Car Market</h2>
+            <canvas id="mainstreamChart"></canvas>
+        </section>
+        
+        <!-- Premium Car Market Section -->
+        <section>
+            <h2>Premium Car Market</h2>
+            <canvas id="premiumChart"></canvas>
+        </section>
+        
+        <!-- LCV Market Section -->
+        <section>
+            <h2>Light Commercial Vehicles (LCV) Market</h2>
+            <canvas id="lcvChart"></canvas>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2024 Your Company Name. All rights reserved.</p>
+    </footer>
+    
     <!-- Link to your custom JavaScript file -->
     <script src="script.js"></script>
 </body>
