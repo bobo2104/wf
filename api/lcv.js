@@ -6,11 +6,11 @@ module.exports = async (req, res) => {
         const result = await pool
             .request()
             .query(`
-                SELECT YEAR(Date) as Year, Segment, SUM(Sales) as TotalSales
+                SELECT ár AS Year, markaðsflokkun AS Segment, SUM(Sales) AS TotalSales
                 FROM LCVSales  -- Replace with your actual table name
                 WHERE markaðsflokkun IN ('COMP-D-VA', 'HEAVY-D-VA', 'MED-D-VAN', 'PICK-UP')
-                GROUP BY Segment, YEAR(Date)
-                ORDER BY Year DESC, Segment;
+                GROUP BY markaðsflokkun, ár
+                ORDER BY ár DESC, markaðsflokkun;
             `);
 
         const data = result.recordset;
