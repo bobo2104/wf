@@ -9,15 +9,13 @@ module.exports = async (req, res) => {
                 SELECT 
                     ár AS Year, 
                     'Total Market' AS Segment, 
-                    SUM(Sales) AS TotalSales
+                    SUM(Fjöldi_skráninga) AS TotalSales
                 FROM 
                     LCVSales  -- Replace with your actual table name
-                WHERE 
-                    markaðsflokkun IN ('COMP-D-VA', 'HEAVY-D-VA', 'MED-D-VAN', 'PICK-UP')
                 GROUP BY 
                     ár
                 ORDER BY 
-                    Year DESC;
+                    ár DESC;
             `);
 
         const data = result.recordset;
