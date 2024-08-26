@@ -15,11 +15,9 @@ module.exports = async (req, res) => {
 
         const data = result.recordset;
 
-        // Organize data by segments and years
         const segments = [...new Set(data.map(item => item.Segment))];
         const years = [...new Set(data.map(item => item.Year.toString()))];
         
-        // Structure to hold sales by segment and year
         const salesBySegment = {};
         segments.forEach(segment => {
             salesBySegment[segment] = years.map(year => {
@@ -31,6 +29,6 @@ module.exports = async (req, res) => {
         res.status(200).json({ segments, years, salesBySegment });
     } catch (error) {
         console.error('Error fetching LCV data:', error);
-        res.status(500).json({ error: 'Internal Server Error' });
+        res.status(500).json({ error: 'Internal Server Error', message: error.message });
     }
 };
