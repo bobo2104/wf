@@ -3,61 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0;
-        }
-
-        .chart-container {
-            width: 80%;
-            max-width: 800px;
-            margin-top: 50px;
-        }
-    </style>
+    <title>Car Market Predictions</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Welcome! Here is the Vehicle Registration Overview</h1>
+    <h1>Car Market Predictions for Next 4 Years</h1>
     <div class="chart-container">
-        <canvas id="registrationChart"></canvas>
+        <canvas id="carMarketChart"></canvas>
     </div>
 
+    <!-- Include Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        fetch('/api/registrations')
-            .then(response => response.json())
-            .then(data => {
-                const labels = data.map(row => row.VehicleType);
-                const counts = data.map(row => row.TotalRegistrations);
-
-                const ctx = document.getElementById('registrationChart').getContext('2d');
-                const chart = new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: labels,
-                        datasets: [{
-                            label: 'Total Registrations',
-                            data: counts,
-                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                            borderColor: 'rgba(75, 192, 192, 1)',
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        scales: {
-                            y: {
-                                beginAtZero: true
-                            }
-                        }
-                    }
-                });
-            });
-    </script>
+    <!-- Link to your custom JavaScript file -->
+    <script src="script.js"></script>
 </body>
 </html>
