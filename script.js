@@ -1,17 +1,21 @@
 document.addEventListener('DOMContentLoaded', () => {
     const endpoints = [
+        { id: 'totalMarketChart', url: '/api/totalMarket', label: 'Total Market' },
         { id: 'lcvChart', url: '/api/lcv', label: 'LCV Segments' },
-        { id: 'totalMarketChart', url: '/api/totalMarket', label: 'Total Market' }
+        { id: 'rentalChart', url: '/api/rental', label: 'Rental Car Market' },
+        { id: 'retailChart', url: '/api/retail', label: 'Retail Car Market' },
+        { id: 'mainstreamChart', url: '/api/mainstream', label: 'Mainstream Car Market' },
+        { id: 'premiumChart', url: '/api/premium', label: 'Premium Car Market' }
     ];
 
     endpoints.forEach(endpoint => {
         fetch(endpoint.url)
             .then(response => response.json())
             .then(data => {
-                if (endpoint.id === 'totalMarketChart' && data.years && data.totalSales) {
+                if (data && data.years && data.salesBySegment) {
+                    createSegmentCharts(data.years, data.salesBySegment, endpoint.label, endpoint.id);
+                } else if (endpoint.id === 'totalMarketChart' && data.years && data.totalSales) {
                     createTotalMarketChart(data.years, data.totalSales);
-                } else if (endpoint.id === 'lcvChart' && data.years && data.salesBySegment) {
-                    createSegmentCharts(data.years, data.salesBySegment, endpoint.label);
                 } else {
                     console.error(`Invalid data structure from ${endpoint.url}:`, data);
                 }
@@ -44,8 +48,8 @@ function createTotalMarketChart(labels, data) {
     });
 }
 
-function createSegmentCharts(labels, salesBySegment, label) {
-    const ctx = document.getElementById('lcvChart').getContext('2d');
+function createSegmentCharts(labels, salesBySegment, label, chartId) {
+    const ctx = document.getElementById(chartId).getContext('2d');
 
     const datasets = Object.keys(salesBySegment).map(segment => {
         return {
