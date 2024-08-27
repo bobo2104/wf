@@ -60,6 +60,7 @@
         .submit-btn {
             width: 100%;
             padding: 15px;
+            margin-top: 10px;
             background: #EB0A1E;
             border: none;
             color: #fff;
@@ -73,16 +74,41 @@
         .submit-btn:hover {
             background: #000;
         }
+
+        .forgot-password {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #EB0A1E;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .forgot-password:hover {
+            color: #000;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <img src="https://i.ibb.co/yBmnCkv/logo-toyota.jpg" alt="Toyota Logo" class="logo">
         <h1>Enter Password</h1>
-        <form>
-            <input type="password" placeholder="Enter your password">
+        <form id="loginForm">
+            <input type="password" id="password" placeholder="Enter your password">
             <button type="submit" class="submit-btn">Submit</button>
         </form>
+        <a href="#" class="forgot-password">Forgot Password?</a>
     </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const password = document.getElementById('password').value;
+            if (password === 'w2wf') { // Replace 'w2wf' with your actual password
+                window.location.href = 'welcome.html'; // Redirect to your protected page
+            } else {
+                alert('Incorrect password, please try again.');
+            }
+        });
+    </script>
 </body>
 </html>
