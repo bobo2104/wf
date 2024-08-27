@@ -3,33 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Password Protected Page</title>
+    <title>Toyota Secure Access</title>
     <style>
-        /* Your existing CSS here */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #ffffff, #f0f0f0);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .container {
+            background: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            color: #EB0A1E;
+        }
+
+        .logo {
+            width: 150px;
+            margin-bottom: 30px;
+        }
+
+        input[type="password"] {
+            width: 100%;
+            padding: 15px;
+            margin: 20px 0;
+            border: 2px solid #EB0A1E;
+            border-radius: 4px;
+            font-size: 18px;
+            text-align: center;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="password"]:focus {
+            border-color: #000;
+            outline: none;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: #EB0A1E;
+            border: none;
+            color: #fff;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: #000;
+        }
     </style>
 </head>
 <body>
-    <div class="login-container">
-        <h2>Enter Password</h2>
-        <form onsubmit="checkPassword(event)">
-            <input type="password" id="password" placeholder="Enter your password" required>
-            <button type="submit">Submit</button>
+    <div class="container">
+        <img src="https://i.ibb.co/yBmnCkv/logo-toyota.jpg" alt="Toyota Logo" class="logo">
+        <h1>Enter Password</h1>
+        <form>
+            <input type="password" placeholder="Enter your password">
+            <button type="submit" class="submit-btn">Submit</button>
         </form>
-        <p id="error-message" style="color: red; display: none;">Incorrect password. Please try again.</p>
     </div>
-
-    <script>
-        function checkPassword(event) {
-            event.preventDefault(); // Prevent form from reloading the page
-            const enteredPassword = document.getElementById('password').value;
-            const correctPassword = 'w2wf';
-
-            if (enteredPassword === correctPassword) {
-                window.location.href = "welcome.html"; // Redirect to the welcome page
-            } else {
-                document.getElementById('error-message').style.display = 'block';
-            }
-        }
-    </script>
 </body>
 </html>
